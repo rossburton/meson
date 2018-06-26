@@ -956,6 +956,10 @@ This will become a hard error in the future.''')
                 '--mode=' + mode]
         if namespace:
             args.append('--namespace=' + namespace)
+        gtkdoc_exe_wrapper = state.environment.cross_info.config["properties"].get('gtkdoc_exe_wrapper', None)
+        if gtkdoc_exe_wrapper:
+            args.append('--run=' + gtkdoc_exe_wrapper)
+
         args += self._unpack_args('--htmlargs=', 'html_args', kwargs)
         args += self._unpack_args('--scanargs=', 'scan_args', kwargs)
         args += self._unpack_args('--scanobjsargs=', 'scanobjs_args', kwargs)
