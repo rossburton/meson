@@ -228,7 +228,7 @@ def detect_cpu_family(compilers):
     # Add fixes here as bugs are reported.
 
     if trial not in known_cpu_families:
-        mlog.warning('Unknown CPU family %s, please report this at https://github.com/mesonbuild/meson/issues/new' % trial)
+        raise EnvironmentException('Unknown CPU family %s, please report this at https://github.com/mesonbuild/meson/issues/new' % trial)
 
     return trial
 
@@ -1043,7 +1043,7 @@ class CrossBuildInfo:
                     raise EnvironmentException('Malformed value in cross file variable %s.' % entry)
 
                 if entry == 'cpu_family' and res not in known_cpu_families:
-                    mlog.warning('Unknown CPU family %s, please report this at https://github.com/mesonbuild/meson/issues/new' % value)
+                    raise EnvironmentException('Unknown CPU family %s, please report this at https://github.com/mesonbuild/meson/issues/new' % value)
 
                 if self.ok_type(res):
                     self.config[s][entry] = res
